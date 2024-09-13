@@ -33,9 +33,9 @@ public class CustomerController {
         return ResponseEntity.ok(customerResponse);
     }
 
-    @PatchMapping(value = "{customer-id}")
+    @PatchMapping(value = "{customer_id}")
     public ResponseEntity<CustomerResponse> updateCustomer(
-            @PathVariable(value = "customer-id") String customer_id, @Validated @RequestBody CustomerRequest customerRequest) {
+            @PathVariable(value = "customer_id") String customer_id, @Validated @RequestBody CustomerRequest customerRequest) {
 
         CustomerResponse customerResponse = customerService.updatePartially(customer_id, customerRequest);
         return ResponseEntity.ok(customerResponse);
@@ -43,27 +43,28 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<List<CustomerResponse>> findAll() {
+
         return ResponseEntity.ok(customerService.findAllCustomers());
     }
 
-    @GetMapping("/exists/{customer-id}")
+    @GetMapping("/exists/{customer_id}")
     public ResponseEntity<Boolean> existsById(
-            @PathVariable("customer-id") String customerId
-    ) {
+            @PathVariable("customer_id") String customerId) {
+
         return ResponseEntity.ok(customerService.existsById(customerId));
     }
 
-    @GetMapping("/{customer-id}")
+    @GetMapping("/{customer_id}")
     public ResponseEntity<CustomerResponse> findById(
-            @PathVariable("customer-id") String customerId
-    ) {
+            @PathVariable("customer_id") String customerId) {
+
         return ResponseEntity.ok(customerService.findById(customerId));
     }
 
-    @DeleteMapping("/{customer-id}")
+    @DeleteMapping("/{customer_id}")
     public ResponseEntity<Void> delete(
-            @PathVariable("customer-id") String customerId
-    ) {
+            @PathVariable("customer_id") String customerId) {
+
         customerService.deleteCustomer(customerId);
         return ResponseEntity.accepted().build();
     }
